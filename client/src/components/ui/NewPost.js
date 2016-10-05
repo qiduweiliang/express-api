@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
-
+import axios from 'axios';
 class NewPost extends Component {
   getStyles() {
     return {
@@ -19,16 +19,24 @@ class NewPost extends Component {
       }
     };
   }
+  newPost(title){
+    axios.post('http://localhost:3000/posts',{title}).then(res =>{
+      console.log(res.data.message);
+      this.context.router.push('/');
 
+    })
+  }
   render() {
     const styles = this.getStyles();
     return (
       <div style={styles.content}>
         <div style={styles.title}>写文章</div>
-        <Form />
+        <Form newPost={this.newPost.bind(this)}/>
       </div>
     );
   }
 }
-
+newPost,contextType = {
+  router:React.PropTypes.object
+};
 export default NewPost;

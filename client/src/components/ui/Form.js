@@ -61,10 +61,19 @@ class Form extends Component {
     };
   }
 
+  handleSubmit(e){
+    e.preventDefault();
+    let title = this.refs.title.value;
+    if(title.length==0){
+      alert('内容不能为空')
+      return
+    }
+
+  }
   render() {
     const styles = this.getStyles();
     return (
-      <form style={styles.form}>
+      <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
         <div style={styles.div}>
           <label style={styles.label}>标题</label>
           <input style={styles.input} key='1' ref='title' />
