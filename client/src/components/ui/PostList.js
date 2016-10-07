@@ -19,7 +19,7 @@ export default class PostList extends Component {
         margin: '20px auto',
         backgroundColor: '#fff',
         borderRadius: '5px',
-        padding: '16px',
+        paddingBottom: '16px',
         boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px'
       },
       title: {
@@ -38,7 +38,11 @@ export default class PostList extends Component {
         borderRadius:'10px',
         margin: '10px auto',
         fontWeight:'600'
-
+      },
+      a:{
+        position:'absolute',
+        right:'16px',
+        top:'20px'
       }
     }
   }
@@ -58,6 +62,11 @@ export default class PostList extends Component {
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
+          <div style={styles.category}>{post.category}</div>
+          <div style={styles.content}>{post.content}</div>
+          <div style={styles.a}>
+            <Link to={`/post/${post._id}`}>查看</Link>
+          </div>
         </div>
       )
     }, this.state.posts);
